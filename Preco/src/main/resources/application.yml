@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:postgresql://0.0.0.0:15432/preco
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+  threads:
+    virtual:
+      enabled: true
+server:
+  compression:
+    enabled: 'true'
+  port: 8004
+  forward-headers-strategy: native

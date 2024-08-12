@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS carrinho;
+CREATE DATABASE carrinho;
+GRANT ALL PRIVILEGES ON DATABASE carrinho TO admin;
+
+DROP DATABASE IF EXISTS item;
+CREATE DATABASE item;
+GRANT ALL PRIVILEGES ON DATABASE item TO admin;
+--Caso queira manter dados depois de desligar o banco, só comentar as linhas abaixo
+DROP DATABASE IF EXISTS login;
+CREATE DATABASE login;
+GRANT ALL PRIVILEGES ON DATABASE login TO admin;
+
+DROP DATABASE IF EXISTS pagamento;
+CREATE DATABASE pagamento;
+GRANT ALL PRIVILEGES ON DATABASE pagamento TO admin;
+
+DROP DATABASE IF EXISTS preco;
+CREATE DATABASE preco;
+GRANT ALL PRIVILEGES ON DATABASE preco TO admin;

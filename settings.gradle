@@ -1,0 +1,4 @@
+rootProject.name = 'Fase05'
+
+include('Login','Pagamento','Preco','Carrinho','Item')
+

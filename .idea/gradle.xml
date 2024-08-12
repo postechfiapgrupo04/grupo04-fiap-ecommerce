@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../digihub/gradle/gradle-4.4.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Carrinho" />
+            <option value="$PROJECT_DIR$/Item" />
+            <option value="$PROJECT_DIR$/Login" />
+            <option value="$PROJECT_DIR$/Pagamento" />
+            <option value="$PROJECT_DIR$/Preco" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Carrinho" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Carrinho" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Item" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Item" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Login" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Login" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Pagamento" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Pagamento" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Preco" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Preco" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/logistica" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/logistica" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

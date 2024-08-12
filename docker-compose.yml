@@ -1,0 +1,14 @@
+services:
+  database:
+    image: 'postgres:latest'
+    ports:
+      - '15432:5432'
+    environment:
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_DB=fase-05-item'
+      - 'POSTGRES_PASSWORD=admin'
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+
+
