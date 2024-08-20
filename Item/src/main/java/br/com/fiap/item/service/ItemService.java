@@ -1,6 +1,7 @@
 package br.com.fiap.item.service;
 
 import br.com.fiap.item.entity.Item;
+import br.com.fiap.item.exceptions.BusinessException;
 import br.com.fiap.item.repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +26,17 @@ public class ItemService {
     }
 
     public Optional<Item> findById(Long id) {
-        return itemRepository.findById(id);
+        Optional<Item> item = itemRepository.findById(id);
+        return Optional.ofNullable(item.orElseThrow(() -> new BusinessException("Item não encontrado")));
     }
 
-    public Item findByName(String name) {
-        return itemRepository.findByName(name);
+    public Optional<Item> findByName(String name) {
+        Optional<Item> item = Optional.ofNullable(itemRepository.findByName(name));
+        return Optional.ofNullable(item.orElseThrow(() -> new BusinessException("Item não encontrado")));
     }
 
     public void deleteById(Long id) {
-        Optional<Item> item = itemRepository.findById(id);
+        Optional<Item> item = Optional.ofNullable(itemRepository.findById(id).orElseThrow(() -> new BusinessException("Item não encontrado")));
         item.ifPresent(itemRepository::delete);
     }
 }

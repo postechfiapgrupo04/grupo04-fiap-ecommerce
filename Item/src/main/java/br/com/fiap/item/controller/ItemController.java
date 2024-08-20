@@ -1,6 +1,7 @@
 package br.com.fiap.item.controller;
 
 import br.com.fiap.item.entity.Item;
+import br.com.fiap.item.exceptions.BusinessException;
 import br.com.fiap.item.service.ItemService;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class ItemController {
     }
 
     @GetMapping("/name")
-    public Item findByName(@RequestParam("name") String name) {
+    public Optional<Item> findByName(@RequestParam("name") String name) {
         return itemService.findByName(name);
     }
 
