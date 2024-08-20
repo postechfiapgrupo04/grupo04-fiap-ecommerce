@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: ecommerce-login-service
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,3 +21,9 @@ server:
     enabled: 'true'
   port: 8002
   forward-headers-strategy: native
+rsa:
+  private-key: classpath:certs/private-key.pem
+  public-key: classpath:certs/public-key.pem
+logging:
+  level:
+    org.springframework.security: trace
