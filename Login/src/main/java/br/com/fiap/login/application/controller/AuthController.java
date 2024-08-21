@@ -1,6 +1,7 @@
 package br.com.fiap.login.application.controller;
 
 import br.com.fiap.login.application.dto.AuthDTO;
+import br.com.fiap.login.application.dto.AuthResponseDTO;
 import br.com.fiap.login.application.service.AuthService;
 import br.com.fiap.login.security.AuthUser;
 import org.slf4j.Logger;
@@ -40,12 +41,10 @@ public class AuthController {
                                 userLogin.password()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        AuthUser userDetails = (AuthUser) authentication.getPrincipal();
-
         log.info("Token requested for user :{}", authentication.getAuthorities());
         String token = authService.generateToken(authentication);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new AuthResponseDTO("Usuário logado com sucesso", token));
     }
 }
 

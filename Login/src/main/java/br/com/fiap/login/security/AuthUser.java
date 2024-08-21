@@ -8,30 +8,29 @@ import java.util.Collection;
 
 public class AuthUser extends User implements UserDetails {
 
-    private final User user;
-
     public AuthUser(User user) {
-        this.user = user;
-    }
 
-    public User getUser() {
-        return user;
+        this.setUserId(user.getUserId());
+        this.setUsername(user.getUsername());
+        this.setPassword(user.getPassword());
+        this.setEmail(user.getEmail());
+        this.setAuthorityList(user.getAuthorityList());
+
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return super.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return super.getUsername();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-
+        return this.getAuthorityList();
     }
 
     @Override
