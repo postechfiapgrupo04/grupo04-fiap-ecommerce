@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.fiap.item.helpers.UpdateHelper.updateHelper;
+
 @Service
 public class ItemService {
 
@@ -38,5 +40,12 @@ public class ItemService {
     public void deleteById(Long id) {
         Optional<Item> item = Optional.ofNullable(itemRepository.findById(id).orElseThrow(() -> new BusinessException("Item não encontrado")));
         item.ifPresent(itemRepository::delete);
+    }
+
+
+    public Item update(Long id, Item item) throws IllegalAccessException {
+        Optional<Item> itemOptional = Optional.ofNullable(itemRepository.findById(id).orElseThrow(() -> new BusinessException("Item não encontrado")));
+            Item item1 = (Item) updateHelper(itemOptional.get(), item);
+            return itemRepository.save(item1);
     }
 }

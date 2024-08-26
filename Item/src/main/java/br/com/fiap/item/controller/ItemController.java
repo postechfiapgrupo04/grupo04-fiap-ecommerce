@@ -38,6 +38,11 @@ public class ItemController {
         return itemService.save(item);
     }
 
+    @PutMapping("/{id}")
+    public Item update(@PathVariable Long id, @RequestBody Item item) throws IllegalAccessException {
+        return itemService.update(id, item);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         itemService.deleteById(id);
