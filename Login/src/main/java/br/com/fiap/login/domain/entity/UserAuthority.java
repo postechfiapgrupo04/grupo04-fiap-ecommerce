@@ -27,7 +27,7 @@ public class UserAuthority implements GrantedAuthority {
 
     @NonNull
     @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private User user;
 
     @Override
