@@ -1,7 +1,6 @@
 package br.com.fiap.item.helpers;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
 public class UpdateHelper {

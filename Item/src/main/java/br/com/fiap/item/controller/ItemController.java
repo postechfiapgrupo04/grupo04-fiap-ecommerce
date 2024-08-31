@@ -1,12 +1,11 @@
 package br.com.fiap.item.controller;
 
 import br.com.fiap.item.entity.Item;
-import br.com.fiap.item.exceptions.BusinessException;
 import br.com.fiap.item.service.ItemService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/item")
@@ -24,12 +23,13 @@ public class ItemController {
     }
 
     @GetMapping("/id")
-    public Optional<Item> findById(@RequestParam("id") Long id) {
-        return itemService.findById(id);
+    public ResponseEntity<Item> findById(@RequestParam("id") Long id) {
+        Item item = itemService.findById(id);
+        return ResponseEntity.ok().body(item);
     }
 
     @GetMapping("/name")
-    public Optional<Item> findByName(@RequestParam("name") String name) {
+    public Item findByName(@RequestParam("name") String name) {
         return itemService.findByName(name);
     }
 
@@ -39,7 +39,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public Item update(@PathVariable Long id, @RequestBody Item item) throws IllegalAccessException {
+    public Item update(@PathVariable Long id, @RequestBody Item item) {
         return itemService.update(id, item);
     }
 
