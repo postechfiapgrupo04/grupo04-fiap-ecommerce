@@ -25,10 +25,11 @@ public class UserUsecaseImp implements UserUsecase {
 
     @Override
     public UserDTO addUser(UserDTO userDTO) {
-
-        Optional<User> user = userRepository.findById(UUID.fromString(userDTO.id()));
-        if (user.isPresent()) {
-            throw new AppException("Usuário já existente na base de dados");
+        if (!userDTO.id().isEmpty()) {
+            Optional<User> user = userRepository.findById(UUID.fromString(userDTO.id()));
+            if (user.isPresent()) {
+                throw new AppException("Usuário já existente na base de dados");
+            }
         }
         return userConverter.convertUserToUserDTO(userRepository.save(userConverter.convertUserDTOToUser(userDTO)));
 

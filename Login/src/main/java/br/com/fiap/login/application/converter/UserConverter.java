@@ -22,17 +22,17 @@ public class UserConverter {
 
     public User convertUserDTOToUser(UserDTO userDTO) {
         User user = new User();
-        user.setUserId(user.getUserId());
-        user.setEmail(user.getEmail());
-        user.setUsername(user.getUsername());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUserId(userDTO.id());
+        user.setEmail(userDTO.email());
+        user.setUsername(userDTO.name());
+        user.setPassword(passwordEncoder.encode(userDTO.password()));
         user.setAuthorityList(userDTO.authorities().stream().map(userAuthorityDTO -> convertUserAuthorityDTOToUserAuthority(userAuthorityDTO, user)).toList());
         return user;
     }
 
     private UserAuthority convertUserAuthorityDTOToUserAuthority(UserAuthorityDTO userAuthorityDTO, User user) {
         UserAuthority userAuthority = new UserAuthority();
-        userAuthority.setAuthority(userAuthority.getAuthority());
+        userAuthority.setAuthority(userAuthorityDTO.authority());
         userAuthority.setUser(user);
         return userAuthority;
     }
