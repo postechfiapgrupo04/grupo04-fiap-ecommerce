@@ -1,39 +1,45 @@
 package br.com.fiap.login.application.controller;
 
-import br.com.fiap.login.application.converter.UserConverter;
-import br.com.fiap.login.application.dto.AuthDTO;
-import br.com.fiap.login.application.dto.AuthResponseDTO;
-import br.com.fiap.login.domain.entity.User;
-import br.com.fiap.login.domain.repository.UserRepository;
+import br.com.fiap.login.application.dto.UserDTO;
+import br.com.fiap.login.domain.UserUsecase;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
 @Validated
 public class UserController {
 
-    private final UserRepository userRepository;
-    private final UserConverter userConverter;
+    private final UserUsecase userUsecase;
 
-    public UserController(UserRepository userRepository, UserConverter userConverter) {
-        this.userRepository = userRepository;
-        this.userConverter = userConverter;
+    public UserController(UserUsecase userUsecase) {
+        this.userUsecase = userUsecase;
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> login() throws IllegalAccessException {
+    public ResponseEntity<?> me() {
+        return ResponseEntity.ok(userUsecase.me());
+    }
 
-        Optional<User> user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (user.isPresent()) {
-            return ResponseEntity.ok(userConverter.convertUserToUserDTO(user.get()));
-        }
-        return ResponseEntity.notFound().build();
+    @PostMapping
+    public ResponseEntity<?> addUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userUsecase.addUser(userDTO));
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(userUsecase.getUserByUsername(username));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userUsecase.updateUser(userDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable String userId) {
+        userUsecase.deleteUser(userId);
+        return ResponseEntity.ok().build();
     }
 }
