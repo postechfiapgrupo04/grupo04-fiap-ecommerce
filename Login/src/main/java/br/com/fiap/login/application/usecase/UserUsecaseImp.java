@@ -26,7 +26,7 @@ public class UserUsecaseImp implements UserUsecase {
     @Override
     public UserDTO addUser(UserDTO userDTO) {
         if (!userDTO.id().isEmpty()) {
-            Optional<User> user = userRepository.findById(UUID.fromString(userDTO.id()));
+            Optional<User> user = userRepository.findById(userDTO.id());
             if (user.isPresent()) {
                 throw new AppException("Usuário já existente na base de dados");
             }
@@ -47,7 +47,7 @@ public class UserUsecaseImp implements UserUsecase {
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
-        Optional<User> user = userRepository.findById(UUID.fromString(userDTO.id()));
+        Optional<User> user = userRepository.findById(userDTO.id());
         if (user.isEmpty()) {
             throw new AppException("Usuário não encontrado na base de dados");
         }
@@ -56,11 +56,11 @@ public class UserUsecaseImp implements UserUsecase {
 
     @Override
     public void deleteUser(String userId) {
-        Optional<User> user = userRepository.findById(UUID.fromString(userId));
+        Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) {
             throw new AppException("Usuário não encontrado na base de dados");
         }
-        userRepository.deleteById(UUID.fromString(userId));
+        userRepository.deleteById(userId);
     }
 
     @Override

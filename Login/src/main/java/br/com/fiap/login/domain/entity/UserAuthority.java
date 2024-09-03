@@ -21,7 +21,7 @@ public class UserAuthority implements GrantedAuthority {
     @Column(unique = true)
     private String authorityId;
 
-    @Column(name = "authority", unique = true)
+    @Column(name = "authority")
     @NonNull
     private String authority;
 

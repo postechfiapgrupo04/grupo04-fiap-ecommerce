@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String userId) {
-        userUsecase.deleteUser(userId);
+    public ResponseEntity<?> deleteUser(@PathVariable String id) {
+        userUsecase.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 }
