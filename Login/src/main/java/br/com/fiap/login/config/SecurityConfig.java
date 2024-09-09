@@ -63,7 +63,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/error/**").permitAll();
                     auth.requestMatchers("/api/auth/**").permitAll();
-                    auth.requestMatchers("/api/user/**").hasAuthority("SCOPE_ROLE_ADMIN");
+                    auth.requestMatchers("/api/user/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

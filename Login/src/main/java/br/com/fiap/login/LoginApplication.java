@@ -29,7 +29,6 @@ public class LoginApplication {
             UserAuthority userAuthority = new UserAuthority();
             userAuthority.setAuthority("ROLE_USER");
 
-
             User user = new User();
             user.setUsername("diego");
             user.setEmail("diego@gmail.com");

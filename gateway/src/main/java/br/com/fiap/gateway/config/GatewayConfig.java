@@ -39,7 +39,7 @@ public class GatewayConfig {
                 .route("auth-server",r -> r.path("/api/auth/login")
                         .uri("http://localhost:8002"))
                 .route("auth-server",r -> r.path("/api/user/me")
-                        .and().method("GET").filters(f-> f.filters(authAdminFilter))
+                        //.and().method("GET").filters(f-> f.filters(authAdminFilter))
                         .uri("http://localhost:8002"))
                 .build();
     }
