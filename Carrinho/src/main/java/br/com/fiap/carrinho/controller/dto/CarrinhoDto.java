@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Builder
 public class CarrinhoDto {
-    private Long idUsuario;
+    private String idUsuario;
     private Long totalItens;
     private BigDecimal valorTotalCarrinho;
     private List<ItemCarrinhoDto> itens;

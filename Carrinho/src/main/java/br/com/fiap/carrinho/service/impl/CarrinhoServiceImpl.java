@@ -26,11 +26,9 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     private final UsuarioService usuarioService;
     private final ModelMapper modelMapper;
 
-    public CarrinhoDto listarItensDoUsuarioFormatado(Long usuarioId) {
-        UsuarioDto usuario = usuarioService.obterUsuarioPorId(usuarioId)
-                .orElseThrow(() -> new CustomException("Usuário não encontrado."));
+    public CarrinhoDto listarItensDoUsuarioFormatado(String usuarioId) {
 
-        List<ItemCarrinho> itens = listarItensDoUsuario(usuario.getIdUsuario());
+        List<ItemCarrinho> itens = listarItensDoUsuario(usuarioId);
 
         if (itens.isEmpty()) {
             throw new CustomException("O carrinho do usuário está vazio.");
@@ -49,19 +47,17 @@ public class CarrinhoServiceImpl implements CarrinhoService {
                 .build();
     }
 
-    private List<ItemCarrinho> listarItensDoUsuario(Long usuarioId) {
+    private List<ItemCarrinho> listarItensDoUsuario(String usuarioId) {
         return itemCarrinhoRepository.findByIdUsuario(usuarioId);
     }
 
-    public ItemCarrinhoDto adicionarItem(ItemCarrinhoDto itemDto) {
-        UsuarioDto usuario = usuarioService.obterUsuarioPorId(itemDto.getIdUsuario())
-                .orElseThrow(() -> new CustomException("Usuário não encontrado."));
+    public ItemCarrinhoDto adicionarItem(ItemCarrinhoDto itemDto, String idUsuario) {
 
         ItemCarrinho item = new ItemCarrinho();
         item.setIdProduto(itemDto.getIdProduto());
         item.setQuantidade(itemDto.getQuantidade());
         item.setPreco(itemDto.getPreco());
-        item.setIdUsuario(usuario.getIdUsuario());
+        item.setIdUsuario(idUsuario);
 
         // Calcular o valor total do item
         item.atualizarValorTotal();
@@ -70,8 +66,8 @@ public class CarrinhoServiceImpl implements CarrinhoService {
         return modelMapper.map(itemCarrinho, ItemCarrinhoDto.class);
     }
 
-    public void removerItem(Long id) {
-        Optional<ItemCarrinho> item = itemCarrinhoRepository.findById(id);
+    public void removerItem(String usuarioId, Long id) {
+        Optional<ItemCarrinho> item = itemCarrinhoRepository.findByIdUsuarioAndId(usuarioId, id);
         if (item.isPresent()) {
             itemCarrinhoRepository.deleteById(id);
         } else {

@@ -12,5 +12,5 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UsuarioDto {
-    private Long idUsuario;
+    private String idUsuario;
 }

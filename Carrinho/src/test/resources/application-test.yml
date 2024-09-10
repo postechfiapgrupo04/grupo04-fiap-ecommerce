@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    platform: h2
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Cria e dropa as tabelas automaticamente em cada teste
+    show-sql: true           # Exibe as queries SQL no console durante os testes
+  test:
+    database:
+      replace: any           # Substitui o banco de dados real por um em memória durante os testes
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG           # Para mostrar mais detalhes no log das requisições HTTP durante os testes

@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
     @Override
-    public Optional<UsuarioDto> obterUsuarioPorId(Long usuarioId) {
-        return Optional.of(UsuarioDto.builder().idUsuario(1L).build());
+    public Optional<UsuarioDto> obterUsuarioPorId(String usuarioId) {
+        return Optional.of(UsuarioDto.builder().idUsuario("1").build());
     }
 }

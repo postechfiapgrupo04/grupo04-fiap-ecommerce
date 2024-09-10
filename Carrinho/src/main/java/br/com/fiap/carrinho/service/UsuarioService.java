@@ -5,5 +5,5 @@ import br.com.fiap.carrinho.controller.dto.UsuarioDto;
 import java.util.Optional;
 
 public interface UsuarioService {
-    Optional<UsuarioDto> obterUsuarioPorId(Long usuarioId);
+    Optional<UsuarioDto> obterUsuarioPorId(String usuarioId);
 }

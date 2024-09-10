@@ -4,8 +4,8 @@ import br.com.fiap.carrinho.controller.dto.CarrinhoDto;
 import br.com.fiap.carrinho.controller.dto.ItemCarrinhoDto;
 
 public interface CarrinhoService {
-    CarrinhoDto listarItensDoUsuarioFormatado(Long codigoUsuario);
-    ItemCarrinhoDto adicionarItem(ItemCarrinhoDto itemDto);
-    void removerItem(Long id);
+    CarrinhoDto listarItensDoUsuarioFormatado(String codigoUsuario);
+    ItemCarrinhoDto adicionarItem(ItemCarrinhoDto itemDto, String usuarioId);
+    void removerItem(String usuarioId, Long id);
 
 }

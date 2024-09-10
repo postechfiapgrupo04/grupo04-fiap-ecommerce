@@ -9,11 +9,17 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/carrinho")
@@ -37,7 +43,7 @@ public class CarrinhoController {
                     content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/usuario/{usuarioId}")
-    public ResponseEntity<CarrinhoDto> listarItensDoUsuario(@PathVariable Long usuarioId) {
+    public ResponseEntity<CarrinhoDto> listarItensDoUsuario(@PathVariable String usuarioId) {
         CarrinhoDto resposta = carrinhoService.listarItensDoUsuarioFormatado(usuarioId);
         return ResponseEntity.ok(resposta);
     }
@@ -51,9 +57,10 @@ public class CarrinhoController {
             @ApiResponse(responseCode = "500", description = "Erro interno ao adicionar o item ao carrinho",
                     content = @Content(mediaType = "application/json"))
     })
-    @PostMapping
-    public ResponseEntity<String> adicionarItem(@Validated @RequestBody ItemCarrinhoDto itemDto) {
-        carrinhoService.adicionarItem(itemDto);
+    @PostMapping("/usuario/{usuarioId}")
+    public ResponseEntity<String> adicionarItem(@PathVariable String usuarioId,
+                                                @Valid @RequestBody ItemCarrinhoDto itemDto) {
+        carrinhoService.adicionarItem(itemDto, usuarioId);
         return ResponseEntity.ok("Item adicionado ao carrinho com sucesso.");
     }
 
@@ -65,10 +72,11 @@ public class CarrinhoController {
             @ApiResponse(responseCode = "500", description = "Erro interno ao remover o item do carrinho",
                     content = @Content(mediaType = "application/json"))
     })
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> removerItem(@PathVariable Long id) {
+    @DeleteMapping("/usuario/{usuarioId}/item/{id}")
+    public ResponseEntity<String> removerItem(@PathVariable String usuarioId,
+                                              @PathVariable Long id) {
         try {
-            carrinhoService.removerItem(id);
+            carrinhoService.removerItem(usuarioId, id);
             return ResponseEntity.ok("Item removido com sucesso.");
         } catch (CustomException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

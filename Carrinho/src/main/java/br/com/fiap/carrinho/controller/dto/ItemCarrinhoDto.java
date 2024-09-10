@@ -1,5 +1,6 @@
 package br.com.fiap.carrinho.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +17,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class ItemCarrinhoDto {
+    @JsonProperty("idItem")
+    private Long id;
     @NotBlank(message = "O codigo do produto é obrigatório.")
     private String idProduto;
     @NotNull(message = "A quantidade é obrigatória.")
@@ -24,7 +27,5 @@ public class ItemCarrinhoDto {
     @NotNull(message = "O preço é obrigatório.")
     @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero.")
     private BigDecimal preco;
-    @NotNull(message = "O ID do usuário é obrigatório.")
-    private Long idUsuario;
     private double valorTotal;
 }
