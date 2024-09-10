@@ -24,8 +24,7 @@ public class ItemController {
 
     @GetMapping("/id")
     public ResponseEntity<Item> findById(@RequestParam("id") Long id) {
-        Item item = itemService.findById(id);
-        return ResponseEntity.ok().body(item);
+        return ResponseEntity.ok().body(itemService.findById(id));
     }
 
     @GetMapping("/name")
