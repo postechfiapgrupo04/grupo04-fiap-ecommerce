@@ -29,7 +29,7 @@ public class ItemCarrinho {
     private Integer quantidade;
     private BigDecimal preco;
 
-    private Long idUsuario;
+    private String idUsuario;
 
     @Column(nullable = false)
     private BigDecimal valorTotal;
