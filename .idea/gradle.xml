@@ -27,7 +27,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/Item" />
-        <option name="gradleJvm" value="corretto-21 (2)" />
+        <option name="gradleJvm" value="corretto-21" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Item" />
@@ -59,10 +59,10 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/logistica" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/gateway" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/logistica" />
+            <option value="$PROJECT_DIR$/gateway" />
           </set>
         </option>
       </GradleProjectSettings>

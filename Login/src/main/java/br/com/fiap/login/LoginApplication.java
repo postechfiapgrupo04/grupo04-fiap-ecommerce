@@ -29,16 +29,27 @@ public class LoginApplication {
             UserAuthority userAuthority = new UserAuthority();
             userAuthority.setAuthority("ROLE_USER");
 
-
             User user = new User();
-            user.setUsername("exampleuser");
-            user.setEmail("example@gmail.com");
-            user.setPassword(passwordEncoder.encode("examplepassword"));
+            user.setUsername("diego");
+            user.setEmail("diego@gmail.com");
+            user.setPassword(passwordEncoder.encode("diego123"));
             userAuthority.setUser(user);
             user.setAuthorityList(List.of(userAuthority));
 
+            UserAuthority userAuthority02 = new UserAuthority();
+            userAuthority02.setAuthority("ROLE_ADMIN");
+
+
+            User user02 = new User();
+            user02.setUsername("nassula");
+            user02.setEmail("nassula@gmail.com");
+            user02.setPassword(passwordEncoder.encode("diego123"));
+            userAuthority02.setUser(user02);
+            user02.setAuthorityList(List.of(userAuthority02));
+
             // Save the user to the database
             userRepository.save(user);
+            userRepository.save(user02);
 
         };
     }

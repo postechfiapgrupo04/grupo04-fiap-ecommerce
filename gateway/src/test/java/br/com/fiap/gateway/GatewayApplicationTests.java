@@ -1,13 +1,13 @@
-package br.com.fiap.carrinho;
+package br.com.fiap.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CarrinhoApplicationTests {
+class GatewayApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

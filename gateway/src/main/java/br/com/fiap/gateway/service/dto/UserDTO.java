@@ -1,4 +1,4 @@
-package br.com.fiap.login.application.dto;
+package br.com.fiap.gateway.service.dto;
 
 import java.util.List;
 

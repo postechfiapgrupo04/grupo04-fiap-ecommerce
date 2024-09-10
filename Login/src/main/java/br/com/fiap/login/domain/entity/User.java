@@ -10,10 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "user_name"),
-        @UniqueConstraint(columnNames = "email")
-})
+@Table(name = "users")
 @Getter
 @Setter
 public class User {
