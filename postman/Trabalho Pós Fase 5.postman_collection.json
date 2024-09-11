@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "fee5e507-2321-42b2-bc6a-1e44a8cbc3b3",
+		"name": "Trabalho Pós Fase 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21621667",
+		"_collection_link": "https://lively-equinox-952842.postman.co/workspace/My-Workspace~95e914e0-69bf-448c-8dcb-57d693b605f9/collection/21621667-fee5e507-2321-42b2-bc6a-1e44a8cbc3b3?action=share&source=collection_link&creator=21621667"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"nassula\",\r\n    \"password\":\"diego123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar Usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/api/user/me",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"name\": \"diegocassula\",\r\n    \"email\": \"diegocassula@gmail.com\",\r\n    \"authorities\": [\r\n        {\r\n            \"id\": \"\",\r\n            \"authority\": \"ROLE_USER\"\r\n        }\r\n    ],\r\n    \"password\": \"diego123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/api/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuário por username",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/api/user/diegocassula",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"user",
+						"diegocassula"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apagar usuário por UserID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTQzODg0MCwiaWF0IjoxNzI1NDAyODQwLCJzY29wZSI6IlJPTEVfQURNSU4ifQ.mk1yYUehHJi__HEqQVSgQ4dg0Fse9pEH96qPS903_QygEVoh2CFZkei04FsVlPVHpWxbBxl-rEyYUDVzHBMMY9cQcVeZiFhs1FBeoTPEPXXP0UyuYAnQahgH3MObcpgECY_ZDTnq3MuuZUH1mDRzb4kWfhlRlUqD0BN6MNvrNcdAkXLTC8zr3rPJTIaZm2xTfi0CVzLD1tCSvTJMRIqNqCKPhhqwg4LSP5vN-xtlIHiRDvyNsyLyZXkRP5Zvk0n_LHsQrzyUGcUmZ0m78VPzuX09HECB7jGrCrUnfROFx3wbJPXY4YpA8335qzb_rawr-a0YA7ATIWg5y3J8TejzGA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/api/user/316365c9-b440-4b7b-aaee-b3a331b4bced",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"user",
+						"316365c9-b440-4b7b-aaee-b3a331b4bced"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
