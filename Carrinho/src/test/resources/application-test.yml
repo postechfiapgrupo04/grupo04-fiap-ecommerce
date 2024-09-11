@@ -12,6 +12,7 @@ spring:
     hibernate:
       ddl-auto: create-drop  # Cria e dropa as tabelas automaticamente em cada teste
     show-sql: true           # Exibe as queries SQL no console durante os testes
+    database-platform: org.hibernate.dialect.H2Dialect
   test:
     database:
       replace: any           # Substitui o banco de dados real por um em memória durante os testes

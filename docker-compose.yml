@@ -9,6 +9,55 @@ services:
       - 'POSTGRES_PASSWORD=admin'
     volumes:
       - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - spring-cloud-network
 
+  ms-carrinho:
+    image: 'carrinho-image'
+    build:
+      context: ./Carrinho
+      dockerfile: Dockerfile
+    container_name: ms-carrinho
+    depends_on:
+      - database
+    environment:
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/carrinho'
+      - 'SPRING_DATASOURCE_USERNAME=admin'
+      - 'SPRING_DATASOURCE_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
+      - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
+      - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+    ports:
+      - 8000:8000
+    networks:
+      - spring-cloud-network
 
+  ms-item:
+    image: 'item-image'
+    build:
+      context: ./Item
+      dockerfile: Dockerfile
+    container_name: ms-item
+    depends_on:
+      - database
+    environment:
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/item'
+      - 'SPRING_DATASOURCE_USERNAME=admin'
+      - 'SPRING_DATASOURCE_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
+      - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
+      - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+    ports:
+      - 8001:8001
+    networks:
+      - spring-cloud-network
 
+networks:
+  spring-cloud-network:
+    driver: bridge

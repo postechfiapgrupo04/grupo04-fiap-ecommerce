@@ -37,7 +37,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.0'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.3'
     testImplementation 'com.h2database:h2:1.3.148'
-
+    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
 
 }
