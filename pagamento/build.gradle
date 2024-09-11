@@ -33,6 +33,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.data:spring-data-commons'
 
+    // Dependências para logging
+    implementation 'org.springframework.boot:spring-boot-starter-logging' // Inclui SLF4J e Logback
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'

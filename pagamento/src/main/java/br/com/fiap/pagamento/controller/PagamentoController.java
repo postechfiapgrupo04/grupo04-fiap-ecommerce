@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/pagamento")
 @Tag(name = "Pagamento", description = "APIs relacionadas ao processamento de pagamentos")
+@Slf4j // Lombok cuida da inicialização do logger
 public class PagamentoController {
 
     private final PagamentoService pagamentoService;
@@ -43,10 +45,11 @@ public class PagamentoController {
             String resultado = pagamentoService.processarPagamento(pagamentoProcessamentoDTO);
             return ResponseEntity.ok(resultado);
         } catch (CustomException e) {
-            // Retorna um erro 400 (Bad Request) com a mensagem personalizada da exceção
+            // Usa o logger fornecido pelo Lombok
+            log.error("Erro de solicitação: {}", e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
-            // Captura exceções genéricas e retorna um erro 500 com detalhes do erro
+            log.error("Erro inesperado ao processar pagamento: {}", e.getMessage(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro inesperado ao processar o pagamento: " + e.getMessage());
         }
     }
@@ -58,7 +61,7 @@ public class PagamentoController {
             @ApiResponse(responseCode = "500", description = "Erro interno ao listar os pagamentos", content = @Content(mediaType = "application/json"))
     })
     @GetMapping("/usuario/{usuarioId}/pagamentos")
-    public ResponseEntity<Page<PagamentoDTO>> listarPagamentosPorUsuario(
+    public ResponseEntity<Object> listarPagamentosPorUsuario(
             @PathVariable String usuarioId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -68,11 +71,12 @@ public class PagamentoController {
             Page<PagamentoDTO> pagamentos = pagamentoService.listarPagamentosPorUsuario(usuarioId, pageable);
             return ResponseEntity.ok(pagamentos);
         } catch (CustomException e) {
-            // Retorna um erro 400 (Bad Request) com a mensagem personalizada da exceção
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            // Log da exceção com Lombok's @Slf4j
+            log.error("Erro de solicitação: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: " + e.getMessage());
         } catch (Exception e) {
-            // Retorna um erro 500 com uma mensagem personalizada, incluindo detalhes do erro
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            log.error("Erro inesperado ao listar os pagamentos: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado: " + e.getMessage());
         }
     }
 }
