@@ -1,7 +1,6 @@
-package com.example.simulacao_pagamento.repository;
+package br.com.fiap.pagamento.repository;
 
-import com.example.simulacao_pagamento.model.Pagamento;
-import com.example.simulacao_pagamento.model.Usuario;
+import br.com.fiap.pagamento.model.Pagamento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,8 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
-    List<Pagamento> findByUsuario(Usuario usuario);
 
-    Page<Pagamento> findByUsuario(Usuario usuario, Pageable pageable);
+    // Busca os pagamentos pelo campo usuarioId (String)
+    List<Pagamento> findByUsuarioId(String usuarioId);
+
+    // Busca paginada de pagamentos pelo campo usuarioId (String)
+    Page<Pagamento> findByUsuarioId(String usuarioId, Pageable pageable);
 }
-

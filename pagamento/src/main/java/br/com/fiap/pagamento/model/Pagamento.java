@@ -1,7 +1,12 @@
-package com.example.simulacao_pagamento.model;
+package br.com.fiap.pagamento.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import br.com.fiap.pagamento.dto.ItemCarrinhoDTO;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+
 import java.util.List;
 
 @Entity
@@ -18,19 +23,15 @@ public class Pagamento {
     private String cupomDescontoAplicado;
     private double valorDescontado;
 
-    // Novo campo para armazenar o percentual de desconto
     private double percentualDesconto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    @JsonIgnore
-    private Usuario usuario;
+    private String usuarioId;
 
-    @OneToMany(mappedBy = "pagamento", cascade = CascadeType.ALL)
-    private List<ItemCarrinho> itensCarrinho;
+    // Marcado como @Transient porque não queremos persistir ItemCarrinhoDTO no banco de dados
+    @Transient
+    private List<ItemCarrinhoDTO> itensCarrinho;
 
-    // Getters and Setters
-
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -87,19 +88,19 @@ public class Pagamento {
         this.percentualDesconto = percentualDesconto;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public List<ItemCarrinho> getItensCarrinho() {
+    public List<ItemCarrinhoDTO> getItensCarrinho() {
         return itensCarrinho;
     }
 
-    public void setItensCarrinho(List<ItemCarrinho> itensCarrinho) {
+    public void setItensCarrinho(List<ItemCarrinhoDTO> itensCarrinho) {
         this.itensCarrinho = itensCarrinho;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.simulacao_pagamento.exception;
+package br.com.fiap.pagamento.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

@@ -1,6 +1,7 @@
-package com.example.simulacao_pagamento.dto;
+package br.com.fiap.pagamento.dto;
 
-import com.example.simulacao_pagamento.model.HistoricoCompra;
+
+import br.com.fiap.pagamento.model.HistoricoCompra;
 import jakarta.validation.constraints.NotNull;
 
 public class HistoricoCompraDTO {

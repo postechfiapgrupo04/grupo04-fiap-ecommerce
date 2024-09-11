@@ -1,4 +1,4 @@
-package com.example.simulacao_pagamento.model;
+package br.com.fiap.pagamento.model;
 
 import jakarta.persistence.*;
 

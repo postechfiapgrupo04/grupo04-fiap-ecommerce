@@ -1,10 +1,10 @@
-package com.example.simulacao_pagamento.controller;
+package br.com.fiap.pagamento.controller;
 
-import com.example.simulacao_pagamento.dto.CupomDescontoApplyDTO;
-import com.example.simulacao_pagamento.dto.CupomDescontoCreateDTO;
-import com.example.simulacao_pagamento.exception.CustomException;
-import com.example.simulacao_pagamento.model.CupomDesconto;
-import com.example.simulacao_pagamento.service.CupomDescontoService;
+import br.com.fiap.pagamento.dto.CupomDescontoApplyDTO;
+import br.com.fiap.pagamento.dto.CupomDescontoCreateDTO;
+import br.com.fiap.pagamento.exception.CustomException;
+import br.com.fiap.pagamento.model.CupomDesconto;
+import br.com.fiap.pagamento.service.CupomDescontoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,8 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/cupom")

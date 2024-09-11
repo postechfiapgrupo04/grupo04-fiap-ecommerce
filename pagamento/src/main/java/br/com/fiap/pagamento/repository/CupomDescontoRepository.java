@@ -1,6 +1,6 @@
-package com.example.simulacao_pagamento.repository;
+package br.com.fiap.pagamento.repository;
 
-import com.example.simulacao_pagamento.model.CupomDesconto;
+import br.com.fiap.pagamento.model.CupomDesconto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

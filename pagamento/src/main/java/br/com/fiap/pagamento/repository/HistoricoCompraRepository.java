@@ -1,7 +1,8 @@
-package com.example.simulacao_pagamento.repository;
+package br.com.fiap.pagamento.repository;
 
-import com.example.simulacao_pagamento.model.HistoricoCompra;
-import com.example.simulacao_pagamento.model.Pagamento;
+
+import br.com.fiap.pagamento.model.HistoricoCompra;
+import br.com.fiap.pagamento.model.Pagamento;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

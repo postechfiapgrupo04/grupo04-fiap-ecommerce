@@ -1,16 +1,14 @@
-package com.example.simulacao_pagamento.service;
+package br.com.fiap.pagamento.service;
 
-import com.example.simulacao_pagamento.dto.CupomDescontoCreateDTO;
-import com.example.simulacao_pagamento.exception.CustomException;
-import com.example.simulacao_pagamento.model.CupomDesconto;
-import com.example.simulacao_pagamento.repository.CupomDescontoRepository;
+import br.com.fiap.pagamento.dto.CupomDescontoCreateDTO;
+import br.com.fiap.pagamento.exception.CustomException;
+import br.com.fiap.pagamento.model.CupomDesconto;
+import br.com.fiap.pagamento.repository.CupomDescontoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CupomDescontoService {
@@ -33,7 +31,9 @@ public class CupomDescontoService {
         validarCupomAtivo(cupomDesconto);
         incrementarUsoCupom(cupomDesconto);
 
-        return "Cupom aplicado com sucesso! Desconto de " + cupomDesconto.getPorcentagemDesconto() + "%.";
+        String descontoFormatado = String.format("%.0f", cupomDesconto.getPorcentagemDesconto());
+
+        return "Cupom aplicado com sucesso! Desconto de " + descontoFormatado + "%.";
     }
 
     // Método para listar todos os cupons de desconto

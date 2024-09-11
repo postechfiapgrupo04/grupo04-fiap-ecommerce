@@ -1,6 +1,7 @@
-package com.example.simulacao_pagamento.model;
+package br.com.fiap.pagamento.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,9 +16,8 @@ public class HistoricoCompra {
     private double preco;
     private double valorTotal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    // Substituímos a entidade Usuario por um campo simples de usuarioId
+    private String usuarioId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pagamento_id")
@@ -70,12 +70,12 @@ public class HistoricoCompra {
         this.valorTotal = valorTotal;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public Pagamento getPagamento() {

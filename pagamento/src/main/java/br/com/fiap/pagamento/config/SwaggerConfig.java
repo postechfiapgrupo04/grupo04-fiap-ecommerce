@@ -1,4 +1,4 @@
-package com.example.simulacao_pagamento.config;
+package br.com.fiap.pagamento.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
