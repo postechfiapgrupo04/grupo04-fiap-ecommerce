@@ -3,6 +3,7 @@ package br.com.fiap.login.application.controller;
 import br.com.fiap.login.application.dto.AuthDTO;
 import br.com.fiap.login.application.dto.AuthResponseDTO;
 import br.com.fiap.login.application.service.AuthService;
+import br.com.fiap.login.domain.UserUsecase;
 import br.com.fiap.login.security.AuthUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,10 +24,12 @@ public class AuthController {
 
     private final AuthService authService;
     private final AuthenticationManager authenticationManager;
+    private final UserUsecase userUsecase;
 
-    public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
+    public AuthController(AuthService authService, AuthenticationManager authenticationManager, UserUsecase userUsecase) {
         this.authService = authService;
         this.authenticationManager = authenticationManager;
+        this.userUsecase = userUsecase;
     }
 
     @PostMapping("/login")
@@ -46,5 +46,12 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponseDTO("Usuário logado com sucesso", token));
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String id) {
+        return ResponseEntity.ok(userUsecase.getUserById(id));
+    }
+
+
 }
 

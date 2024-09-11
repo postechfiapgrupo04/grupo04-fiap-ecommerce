@@ -1,11 +1,13 @@
 package br.com.fiap.login.security;
 
 import br.com.fiap.login.domain.entity.User;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+@NoArgsConstructor
 public class AuthUser extends User implements UserDetails {
 
     public AuthUser(User user) {

@@ -56,11 +56,4 @@ public class GatewayConfig {
 
                 .build();
     }
-    /*
-    @Bean
-    public GlobalFilter customFilter() {
-        return new AuthUserFilter();
-    }
-
-     */
 }

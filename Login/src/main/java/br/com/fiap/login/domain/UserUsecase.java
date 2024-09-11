@@ -4,13 +4,15 @@ import br.com.fiap.login.application.dto.UserDTO;
 
 public interface UserUsecase {
 
-    public UserDTO addUser(UserDTO userDTO);
+    UserDTO addUser(UserDTO userDTO);
 
-    public UserDTO getUserByUsername(String username);
+    UserDTO getUserById(String id);
 
-    public UserDTO updateUser(UserDTO userDTO);
+    UserDTO getUserByUsername(String username);
 
-    public void deleteUser(String userId);
+    UserDTO updateUser(UserDTO userDTO);
 
-    public UserDTO me();
+    void deleteUser(String userId);
+
+    UserDTO me();
 }
