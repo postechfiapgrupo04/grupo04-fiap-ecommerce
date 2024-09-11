@@ -14,9 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -46,8 +43,10 @@ public class PagamentoController {
             String resultado = pagamentoService.processarPagamento(pagamentoProcessamentoDTO);
             return ResponseEntity.ok(resultado);
         } catch (CustomException e) {
+            // Retorna um erro 400 (Bad Request) com a mensagem personalizada da exceção
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
+            // Captura exceções genéricas e retorna um erro 500 com detalhes do erro
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro inesperado ao processar o pagamento: " + e.getMessage());
         }
     }
@@ -69,9 +68,11 @@ public class PagamentoController {
             Page<PagamentoDTO> pagamentos = pagamentoService.listarPagamentosPorUsuario(usuarioId, pageable);
             return ResponseEntity.ok(pagamentos);
         } catch (CustomException e) {
+            // Retorna um erro 400 (Bad Request) com a mensagem personalizada da exceção
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } catch (Exception e) {
-            throw new CustomException("Ocorreu um erro ao listar os pagamentos.", e);
+            // Retorna um erro 500 com uma mensagem personalizada, incluindo detalhes do erro
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

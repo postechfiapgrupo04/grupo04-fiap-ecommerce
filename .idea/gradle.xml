@@ -8,11 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Carrinho" />
             <option value="$PROJECT_DIR$/Item" />
             <option value="$PROJECT_DIR$/Login" />
-            <option value="$PROJECT_DIR$/Pagamento" />
             <option value="$PROJECT_DIR$/Preco" />
+            <option value="$PROJECT_DIR$/carrinho" />
+            <option value="$PROJECT_DIR$/gateway" />
+            <option value="$PROJECT_DIR$/pagamento" />
           </set>
         </option>
       </GradleProjectSettings>

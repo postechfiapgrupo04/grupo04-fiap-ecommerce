@@ -47,7 +47,7 @@ public class PagamentoService {
     @Transactional
     public String processarPagamento(PagamentoProcessamentoDTO pagamentoProcessamentoDTO) {
         // Obter dados do usuário via API
-        UsuarioDTO usuario = obterDadosUsuario();
+        UsuarioDTO usuario = obterDadosUsuario(pagamentoProcessamentoDTO.getUsuarioId());
 
         // Obter itens do carrinho do usuário via API de Carrinho
         List<ItemCarrinhoDTO> itensCarrinho = obterItensCarrinho(usuario.getUserId());
@@ -75,14 +75,26 @@ public class PagamentoService {
         return gerarMensagemConclusao(valorTotal, valorDesconto, cupomDescontoAplicado);
     }
 
-    private UsuarioDTO obterDadosUsuario() {
+    private UsuarioDTO obterDadosUsuario(String id) {
         try {
-            String url = "http://localhost:8002/api/user/me";
+            // Atualize a URL para incluir o ID dinâmico
+            String url = String.format("http://localhost:8002/api/auth/user/%s", id);
             ResponseEntity<UsuarioDTO> response = restTemplate.exchange(
                     url, HttpMethod.GET, null, UsuarioDTO.class);
-            return Optional.ofNullable(response.getBody()).orElseThrow(() -> new CustomException("Usuário não encontrado."));
+
+            // Verifique se o corpo da resposta não é nulo e retorne os dados do usuário
+            UsuarioDTO usuario = response.getBody();
+
+            // Se o corpo for nulo, ou o serviço externo retornar um usuário inválido, lance uma exceção
+            if (usuario == null || usuario.getUserId() == null || usuario.getUserId().isEmpty()) {
+                throw new CustomException("Usuário inválido ou não encontrado.");
+            }
+
+            return usuario;
         } catch (HttpClientErrorException e) {
             throw new CustomException("Erro ao obter dados do usuário: " + e.getMessage(), e);
+        } catch (Exception e) {
+            throw new CustomException("Erro inesperado ao obter dados do usuário.", e);
         }
     }
 
@@ -158,7 +170,7 @@ public class PagamentoService {
         // Obter dados do usuário via API externa
         UsuarioDTO usuario;
         try {
-            usuario = obterDadosUsuario();
+            usuario = obterDadosUsuario(usuarioId);
         } catch (Exception e) {
             String errorMessage = String.format("Erro ao obter os dados do usuário. ID do usuário: %s. Detalhes: %s", usuarioId, e.getMessage());
             logger.error(errorMessage);
