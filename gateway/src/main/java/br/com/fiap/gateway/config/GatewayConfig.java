@@ -20,23 +20,37 @@ public class GatewayConfig {
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-        // adding 2 rotes to first microservice as we need to log request body if method is POST
+
         return builder.routes()
-                /*.route("first-microservice",r -> r.path("/first")
-                        .and().method("POST")
-                        .and().readBody(Student.class, s -> true).filters(f -> f.filters(requestFilter, authFilter))
-                        .uri("http://localhost:8081"))
-                .route("first-microservice",r -> r.path("/first")
-                        .and().method("GET").filters(f-> f.filters(authFilter))
-                        .uri("http://localhost:8081"))
-                .route("second-microservice",r -> r.path("/second")
-                        .and().method("POST")
-                        .and().readBody(Company.class, s -> true).filters(f -> f.filters(requestFilter, authFilter))
-                        .uri("http://localhost:8082"))
-                .route("second-microservice",r -> r.path("/second")
-                        .and().method("GET").filters(f-> f.filters(authFilter))
-                        .uri("http://localhost:8082"))*/
+                // Rotas para o serviço de carrinho
+                .route("Get carrinho by User ID", r -> r.path("/carrinho/usuario/**")
+                        .and().method("GET").filters(f-> f.filters(authUserFilter))
+                        .uri("http://localhost:8000"))
+                .route("Create Carrinho", r -> r.path("/carrinho/usuario/**")
+                        .and().method("POST").filters(f-> f.filters(authUserFilter))
+                        .uri("http://localhost:8000"))
+                .route("Delete Item Carrinho", r -> r.path("/carrinho/usuario/**")
+                        .and().method("DELETE").filters(f-> f.filters(authUserFilter))
+                        .uri("http://localhost:8000"))
+
+
+                // Rotas para o serviço de itens
+                .route("Get All Itens", r -> r.path("/item")
+                        .uri("http://localhost:8001"))
+                .route("Get Item by ID", r -> r.path("/item/**")
+                        .uri("http://localhost:8001"))
+                .route("Create Item", r -> r.path("/item")
+                        .and().method("POST").filters(f-> f.filters(authAdminFilter))
+                        .uri("http://localhost:8001"))
+                .route("Delete Item", r -> r.path("/item")
+                        .and().method("DELETE").filters(f-> f.filters(authAdminFilter))
+                        .uri("http://localhost:8001"))
+
+
+                // Rotas para o serviço de Login
                 .route("auth-server",r -> r.path("/api/auth/login")
+                        .uri("http://localhost:8002"))
+                .route("Create user",r -> r.path("/api/user")
                         .uri("http://localhost:8002"))
                 .route("auth-server",r -> r.path("/api/user/me")
                         //.and().method("GET").filters(f-> f.filters(authAdminFilter))
@@ -44,14 +58,22 @@ public class GatewayConfig {
 
                 // Rotas para o serviço de cupons
                 .route("cupom-service-aplicar", r -> r.path("/cupom/aplicar")
+                        .and().method("POST").filters(f-> f.filters(authUserFilter))
                         .uri("http://localhost:8003"))
                 .route("cupom-service-listar", r -> r.path("/cupom/listar")
+                        .and().method("GET").filters(f-> f.filters(authUserFilter))
                         .uri("http://localhost:8003"))
+                .route("cupom-service-listar", r -> r.path("/cupom/criar")
+                        .and().method("POST").filters(f-> f.filters(authUserFilter))
+                        .uri("http://localhost:8003"))
+
 
                 // Rotas para o serviço de pagamentos
                 .route("pagamento-service-processar", r -> r.path("/pagamento/processar")
+                        .and().method("POST").filters(f-> f.filters(authUserFilter))
                         .uri("http://localhost:8003"))
                 .route("pagamento-service-listar-usuario", r -> r.path("/pagamento/usuario/{usuarioId}/pagamentos")
+                        .and().method("GET").filters(f-> f.filters(authUserFilter))
                         .uri("http://localhost:8003"))
 
                 .build();
