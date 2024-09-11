@@ -36,6 +36,15 @@ public class UserUsecaseImp implements UserUsecase {
     }
 
     @Override
+    public UserDTO getUserById(String id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new AppException("Usuário não encontrado na base de dados");
+        }
+        return userConverter.convertUserToUserDTO(user.get());
+    }
+
+    @Override
     public UserDTO getUserByUsername(String username) {
 
         Optional<User> user = userRepository.findByUsername(username);

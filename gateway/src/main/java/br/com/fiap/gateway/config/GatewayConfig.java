@@ -43,11 +43,4 @@ public class GatewayConfig {
                         .uri("http://localhost:8002"))
                 .build();
     }
-    /*
-    @Bean
-    public GlobalFilter customFilter() {
-        return new AuthUserFilter();
-    }
-
-     */
 }
