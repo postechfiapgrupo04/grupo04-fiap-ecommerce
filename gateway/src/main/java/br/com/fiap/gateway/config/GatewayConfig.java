@@ -41,6 +41,19 @@ public class GatewayConfig {
                 .route("auth-server",r -> r.path("/api/user/me")
                         //.and().method("GET").filters(f-> f.filters(authAdminFilter))
                         .uri("http://localhost:8002"))
+
+                // Rotas para o serviço de cupons
+                .route("cupom-service-aplicar", r -> r.path("/cupom/aplicar")
+                        .uri("http://localhost:8003"))
+                .route("cupom-service-listar", r -> r.path("/cupom/listar")
+                        .uri("http://localhost:8003"))
+
+                // Rotas para o serviço de pagamentos
+                .route("pagamento-service-processar", r -> r.path("/pagamento/processar")
+                        .uri("http://localhost:8003"))
+                .route("pagamento-service-listar-usuario", r -> r.path("/pagamento/usuario/{usuarioId}/pagamentos")
+                        .uri("http://localhost:8003"))
+
                 .build();
     }
     /*
