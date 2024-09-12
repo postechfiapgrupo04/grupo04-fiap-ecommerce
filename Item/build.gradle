@@ -38,3 +38,15 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootJar {
+    enabled = true  // Necessário para gerar o JAR executável Spring Boot para este módulo
+}
+
+jar {
+    enabled = false  // Desativa o JAR padrão
+}
+
+tasks.register('prepareKotlinBuildScriptModel') {
+
+}
