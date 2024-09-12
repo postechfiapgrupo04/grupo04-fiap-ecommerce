@@ -51,7 +51,11 @@ Após isso, as aplicações estarão prontas para uso!
 
 ## Integrantes do Projeto
   Bruno Sousa - brunosousa357@gmail.com - RM 352627
+  
   Bruno Rosselli - bruno.rosselli@hotmail.com - RM 353094
+  
   Diego Nassula - diegonassula@gmail.com - RM 353126
+  
   Milton Williams - milton_williamsx@hotmail.com - RM 352999
+  
   Robinho Kcond - robinhokcond1@hotmail.com - RM 352557
