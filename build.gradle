@@ -4,17 +4,32 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'br.com.fiap'
-version = '1.0-SNAPSHOT'
+allprojects {
+    group = 'br.com.fiap'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = '21' // ou 17 dependendo da versão do Java
+    targetCompatibility = '21'
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.10.0')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        implementation 'org.springframework.boot:spring-boot-docker-compose:3.1.1'
+
+    }
 }
 
 test {

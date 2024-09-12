@@ -35,6 +35,17 @@ services:
     networks:
       - spring-cloud-network
 
+  ms-gateway:
+    image: 'gateway-image'
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: ms-gateway
+    ports:
+      - 8008:8008
+    networks:
+      - spring-cloud-network
+
   ms-item:
     image: 'item-image'
     build:
@@ -55,6 +66,52 @@ services:
       - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
     ports:
       - 8001:8001
+    networks:
+      - spring-cloud-network
+
+  ms-login:
+    image: 'login-image'
+    build:
+      context: ./Login
+      dockerfile: Dockerfile
+    container_name: ms-login
+    depends_on:
+      - database
+    environment:
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/login'
+      - 'SPRING_DATASOURCE_USERNAME=admin'
+      - 'SPRING_DATASOURCE_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
+      - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
+      - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+    ports:
+      - 8002:8002
+    networks:
+      - spring-cloud-network
+
+  ms-pagamento:
+    image: 'pagamento-image'
+    build:
+      context: ./Pagamento
+      dockerfile: Dockerfile
+    container_name: ms-pagamento
+    depends_on:
+      - database
+    environment:
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/pagamento'
+      - 'SPRING_DATASOURCE_USERNAME=admin'
+      - 'SPRING_DATASOURCE_PASSWORD=admin'
+      - 'SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
+      - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
+      - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+    ports:
+      - 8003:8003
     networks:
       - spring-cloud-network
 

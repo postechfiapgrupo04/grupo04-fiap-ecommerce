@@ -1,15 +1,6 @@
 spring:
   application:
     name: ecommerce-login-service
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-      show-sql: true
-  datasource:
-    username: admin
-    password: admin
-    url: jdbc:postgresql://localhost:15432/login
-    driver-class-name: org.postgresql.Driver
   sql:
     init:
       mode: always

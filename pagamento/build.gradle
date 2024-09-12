@@ -9,6 +9,9 @@ group = 'br.com.fiap'
 version = '0.0.1-SNAPSHOT'
 
 java {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
@@ -48,9 +51,6 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
 
 // Configuração do Jacoco para cobertura de testes
 jacoco {
@@ -63,4 +63,12 @@ jacocoTestReport {
         xml.required.set(true)
         html.required.set(true)
     }
+}
+
+bootJar {
+    enabled = true  // Necessário para gerar o JAR executável Spring Boot para este módulo
+}
+
+jar {
+    enabled = false  // Desativa o JAR padrão
 }

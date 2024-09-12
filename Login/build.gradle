@@ -38,9 +38,10 @@ dependencies {
 
 }
 
-tasks.named('testClasses') {
-    useJUnitPlatform()
+bootJar {
+    enabled = true  // Necessário para gerar o JAR executável Spring Boot para este módulo
 }
-tasks.named('test') {
-    useJUnitPlatform()
+
+jar {
+    enabled = false  // Desativa o JAR padrão
 }
