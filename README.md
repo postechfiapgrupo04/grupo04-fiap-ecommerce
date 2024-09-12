@@ -47,7 +47,6 @@ Para instalar e executar os microsserviços, siga os passos abaixo:
 4. Execute o comando
    ```
    docker compose up --build
-
 Após isso, as aplicações estarão prontas para uso!
 
 ## Integrantes do Projeto
