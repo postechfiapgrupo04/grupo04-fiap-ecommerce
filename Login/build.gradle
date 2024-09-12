@@ -38,9 +38,6 @@ dependencies {
 
 }
 
-tasks.named('testClasses') {
-    useJUnitPlatform()
-}
 tasks.named('test') {
     useJUnitPlatform()
 }
