@@ -30,6 +30,7 @@ services:
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
       - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
       - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+      - 'SPRING_DOCKER_COMPOSE_ENABLED=false'
     ports:
       - 8000:8000
     networks:
@@ -41,6 +42,8 @@ services:
       context: ./gateway
       dockerfile: Dockerfile
     container_name: ms-gateway
+    environment:
+      - 'SPRING_DOCKER_COMPOSE_ENABLED=false'
     ports:
       - 8008:8008
     networks:
@@ -64,6 +67,7 @@ services:
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
       - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
       - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+      - 'SPRING_DOCKER_COMPOSE_ENABLED=false'
     ports:
       - 8001:8001
     networks:
@@ -87,6 +91,7 @@ services:
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
       - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
       - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+      - 'SPRING_DOCKER_COMPOSE_ENABLED=false'
     ports:
       - 8002:8002
     networks:
@@ -110,6 +115,7 @@ services:
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=update'
       - 'SPRING_JPA_HIBERNATE_SHOW_SQL=true'
       - 'SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect'
+      - 'SPRING_DOCKER_COMPOSE_ENABLED=false'
     ports:
       - 8003:8003
     networks:
