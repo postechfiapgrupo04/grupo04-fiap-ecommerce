@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SonarLintProjectSettings">
+    <option name="moduleMapping">
+      <map>
+        <entry key="carrinho" value="Carrinho" />
+        <entry key="carrinho.main" value="Carrinho.main" />
+        <entry key="carrinho.test" value="Carrinho.test" />
+      </map>
+    </option>
+  </component>
+</project>

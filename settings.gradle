@@ -1,4 +1,8 @@
-rootProject.name = 'Fase05'
+rootProject.name = 'Fase-05'
 
-include('Login','Pagamento','Preco','Carrinho','Item')
-
+include 'carrinho'
+include 'gateway'
+include 'Item'
+include 'Login'
+include 'pagamento'
+include 'Preco'

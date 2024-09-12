@@ -22,15 +22,53 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8002/api/auth/login",
+					"raw": "localhost:8008/api/auth/login",
 					"host": [
 						"localhost"
 					],
-					"port": "8002",
+					"port": "8008",
 					"path": [
 						"api",
 						"auth",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"quadro\",\r\n    \"price\": 300.00,\r\n    \"description\": \"Um quadr\",\r\n    \"quantity\": 1,\r\n    \"category\": \"FURNITURE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8008/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"item"
 					]
 				}
 			},
@@ -44,7 +82,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -52,15 +90,172 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8002/api/user/me",
+					"raw": "localhost:8008/api/user/me",
 					"host": [
 						"localhost"
 					],
-					"port": "8002",
+					"port": "8008",
 					"path": [
 						"api",
 						"user",
 						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar Carrinho por Usuario ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8008/carrinho/usuario/c432aad2-52ae-4b32-aa2d-95cf6dad1e34",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"carrinho",
+						"usuario",
+						"c432aad2-52ae-4b32-aa2d-95cf6dad1e34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todos os itens",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8008/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pegar item por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8008/item/id?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"item",
+						"id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cupons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8008/cupom/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"cupom",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar pagamentos por usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8008/pagamento/usuario/c432aad2-52ae-4b32-aa2d-95cf6dad1e34/pagamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"pagamento",
+						"usuario",
+						"c432aad2-52ae-4b32-aa2d-95cf6dad1e34",
+						"pagamentos"
 					]
 				}
 			},
@@ -74,7 +269,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -83,7 +278,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"\",\r\n    \"name\": \"diegocassula\",\r\n    \"email\": \"diegocassula@gmail.com\",\r\n    \"authorities\": [\r\n        {\r\n            \"id\": \"\",\r\n            \"authority\": \"ROLE_USER\"\r\n        }\r\n    ],\r\n    \"password\": \"diego123\"\r\n}",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"name\": \"diegonassula\",\r\n    \"email\": \"diegonassula@gmail.com\",\r\n    \"authorities\": [\r\n        {\r\n            \"id\": \"\",\r\n            \"authority\": \"ROLE_USER\"\r\n        }\r\n    ],\r\n    \"password\": \"diego123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,11 +286,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8002/api/user",
+					"raw": "localhost:8008/api/user",
 					"host": [
 						"localhost"
 					],
-					"port": "8002",
+					"port": "8008",
 					"path": [
 						"api",
 						"user"
@@ -105,30 +300,153 @@
 			"response": []
 		},
 		{
-			"name": "Get Usuário por username",
+			"name": "Criar pagamento",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTk1NjU5NywiaWF0IjoxNzI1OTIwNTk3LCJzY29wZSI6IlJPTEVfQURNSU4ifQ.KJt5XuXiZ20sW9Vff63snlTHnIzW3km0_mvD7r4WtbEMusz3Py00qcO0gkicXIyN89kRrnlLldgcaxAPmEC7_VV7-llmtEry9mZefbJAsEVLCP-n68b2TYfcap5ph7EBOjf0F3vaCEZbGHNMJ-cZ7eRq1wG2eMIzVk36L0jZIKdZpddm1lffnHSi5UkZq_46jVcBxCJZoMwf-i0SFxRpV1xDthtnSP1bVf2gYzYq32okVORhLYS3h9VNPunNc1kCO4YgoHX0JYSy1VPcE8v3L7hbbIOBJwk3D6_ZVciPVftRcyWQ0jn1CHph8GfjevIoLMkATkklYoXWz3nlP9N6eQ",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCartao\": \"1234565454\",\r\n  \"validadeCartao\": \"24/09\",\r\n  \"usuarioId\": \"c432aad2-52ae-4b32-aa2d-95cf6dad1e34\",\r\n  \"cupomDesconto\": \"Teste 01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8002/api/user/diegocassula",
+					"raw": "localhost:8008/pagamento/processar",
 					"host": [
 						"localhost"
 					],
-					"port": "8002",
+					"port": "8008",
 					"path": [
-						"api",
-						"user",
-						"diegocassula"
+						"pagamento",
+						"processar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Cupom Pagamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"codigo\": \"Teste 01\",\r\n  \"porcentagemDesconto\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8008/cupom/criar",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"cupom",
+						"criar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicar Cupom Pagamento Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"codigo\": \"Teste 01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8008/cupom/aplicar",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"cupom",
+						"aplicar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Carrinho",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idProduto\" : \"1\",\r\n    \"quantidade\" : \"1\",\r\n    \"preco\" : 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8008/carrinho/usuario/c432aad2-52ae-4b32-aa2d-95cf6dad1e34",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"carrinho",
+						"usuario",
+						"c432aad2-52ae-4b32-aa2d-95cf6dad1e34"
 					]
 				}
 			},
@@ -142,7 +460,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoibmFzc3VsYSIsImV4cCI6MTcyNTQzODg0MCwiaWF0IjoxNzI1NDAyODQwLCJzY29wZSI6IlJPTEVfQURNSU4ifQ.mk1yYUehHJi__HEqQVSgQ4dg0Fse9pEH96qPS903_QygEVoh2CFZkei04FsVlPVHpWxbBxl-rEyYUDVzHBMMY9cQcVeZiFhs1FBeoTPEPXXP0UyuYAnQahgH3MObcpgECY_ZDTnq3MuuZUH1mDRzb4kWfhlRlUqD0BN6MNvrNcdAkXLTC8zr3rPJTIaZm2xTfi0CVzLD1tCSvTJMRIqNqCKPhhqwg4LSP5vN-xtlIHiRDvyNsyLyZXkRP5Zvk0n_LHsQrzyUGcUmZ0m78VPzuX09HECB7jGrCrUnfROFx3wbJPXY4YpA8335qzb_rawr-a0YA7ATIWg5y3J8TejzGA",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -163,6 +481,97 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Deletar item Carrinho",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8008/carrinho/usuario/c432aad2-52ae-4b32-aa2d-95cf6dad1e34/item/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"carrinho",
+						"usuario",
+						"c432aad2-52ae-4b32-aa2d-95cf6dad1e34",
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apagar Item por ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8008/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8008",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
