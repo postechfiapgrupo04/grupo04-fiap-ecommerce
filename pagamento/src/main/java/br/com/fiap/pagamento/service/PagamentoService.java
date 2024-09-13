@@ -78,7 +78,7 @@ public class PagamentoService {
     private UsuarioDTO obterDadosUsuario(String id) {
         try {
             // Atualize a URL para incluir o ID dinâmico
-            String url = String.format("http://localhost:8002/api/auth/user/%s", id);
+            String url = String.format("http://ms-login:8002/api/auth/user/%s", id);
             ResponseEntity<UsuarioDTO> response = restTemplate.exchange(
                     url, HttpMethod.GET, null, UsuarioDTO.class);
 
@@ -100,7 +100,7 @@ public class PagamentoService {
 
     private List<ItemCarrinhoDTO> obterItensCarrinho(String usuarioId) {
         try {
-            String url = "http://localhost:8001/carrinho/usuario/" + usuarioId;
+            String url = "http://ms-carrinho:8000/carrinho/usuario/" + usuarioId;
             ResponseEntity<List<ItemCarrinhoDTO>> response = restTemplate.exchange(
                     url, HttpMethod.GET, null, new ParameterizedTypeReference<List<ItemCarrinhoDTO>>() {});
             return Optional.ofNullable(response.getBody()).orElseThrow(() -> new CustomException("Carrinho não encontrado para o usuário."));
@@ -116,7 +116,7 @@ public class PagamentoService {
     private double aplicarCupomDesconto(String cupom, double valorTotal) {
         try {
             CupomDescontoApplyDTO cupomDescontoApplyDTO = new CupomDescontoApplyDTO(cupom);
-            ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/cupom/aplicar", new HttpEntity<>(cupomDescontoApplyDTO), String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity("http://ms-login:8080/cupom/aplicar", new HttpEntity<>(cupomDescontoApplyDTO), String.class);
 
             if (response.getStatusCode().is2xxSuccessful()) {
                 double percentualDesconto = cupomDescontoService.buscarPorcentagemDesconto(cupom);
@@ -222,7 +222,7 @@ public class PagamentoService {
     }
 
     private void limparCarrinho(String usuarioId) {
-        restTemplate.delete("http://localhost:8001/carrinho/usuario/" + usuarioId);
+        restTemplate.delete("http://ms-carrinho:8000/carrinho/usuario/" + usuarioId);
     }
 
     private String gerarMensagemConclusao(double valorTotal, double valorDesconto, String cupomDescontoAplicado) {

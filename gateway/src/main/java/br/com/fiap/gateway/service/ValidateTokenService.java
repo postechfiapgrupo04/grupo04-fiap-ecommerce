@@ -18,7 +18,7 @@ public class ValidateTokenService {
         headers.add("Authorization", token);
         HttpEntity<String> request = new HttpEntity<>(headers);
         try {
-            ResponseEntity<UserDTO> response = client.exchange("http://localhost:8002/api/user/me", HttpMethod.GET, request, UserDTO.class);
+            ResponseEntity<UserDTO> response = client.exchange("http://ms-login:8002/api/user/me", HttpMethod.GET, request, UserDTO.class);
             if (response.getStatusCode().is2xxSuccessful()) {
                 return response.getBody();
             }
